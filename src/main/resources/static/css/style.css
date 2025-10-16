@@ -1,0 +1,158 @@
+
+:root{
+    --bg: #f5f7fb;          /* fundo claro */
+    --panel: #ffffff;       /* cartões/containers claros */
+    --text: #111827;        /* texto principal (cinza-900) */
+    --muted: #6b7280;       /* texto secundário (cinza-500/600) */
+    --primary: #2563eb;     /* azul-600 */
+    --primary-hover: #1d4ed8;/* azul-700 */
+    --danger: #ef4444;      /* vermelho-500 */
+    --success: #16a34a;     /* verde-600 */
+    --border: #e5e7eb;      /* borda sutil */
+    --ring: #60a5fa;        /* azul-400 (foco) */
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(2, 6, 23, .07); /* sombra suave para claro */
+}
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body{
+    height: 100%;
+    background: linear-gradient(180deg, #fbfdff, var(--bg)); /* gradiente clarinho */
+    color: var(--text);
+    font: 500 16px/1.5 "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Container principal */
+body{
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+}
+
+main, body > form, body > section{
+    width: min(720px, 100%);
+}
+
+/* Títulos */
+h1{
+    font-size: clamp(28px, 3vw, 36px);
+    letter-spacing: .2px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+h2{
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* Card geral */
+body > form,
+body > section{
+    background: linear-gradient(180deg, #ffffff, var(--panel));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+/* Formulário */
+form{
+    display: grid;
+    gap: 16px;
+}
+
+form > div{
+    display: grid;
+    gap: 8px;
+}
+
+label{
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Inputs */
+input[type="text"]{
+    background: #ffffff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .04s ease;
+}
+
+input[type="text"]::placeholder{
+    color: #9ca3af; /* gray-400 */
+}
+
+input[type="text"]:focus{
+    border-color: var(--ring);
+    box-shadow: 0 0 0 4px rgba(96,165,250,.25);
+}
+
+/* Botão primário — azul legível em tema claro */
+button[type="submit"]{
+    margin-top: 8px;
+    appearance: none;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    background: radial-gradient(120% 120% at 80% 10%, rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 60%), var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform .06s ease, filter .2s ease, background .2s ease;
+}
+
+button[type="submit"]:hover{
+    background: var(--primary-hover);
+    filter: brightness(1.02);
+}
+
+button[type="submit"]:active{
+    transform: translateY(1px) scale(.995);
+}
+
+/* Seções de resultado/erro */
+body > section{
+    margin-top: 18px;
+}
+
+body > section p{
+    font-size: clamp(18px, 2vw, 20px);
+}
+
+section.resultado{
+    border-color: color-mix(in oklab, var(--success) 35%, var(--border));
+    box-shadow: 0 10px 30px rgba(22, 163, 74, .10);
+}
+
+section.erro{
+    border-color: color-mix(in oklab, var(--danger) 35%, var(--border));
+    box-shadow: 0 10px 30px rgba(239, 68, 68, .10);
+}
+
+/* Acessibilidade: foco visível */
+a, button, input{
+    -webkit-tap-highlight-color: transparent;
+}
+:focus-visible{
+    outline: 2px dashed var(--ring);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+/* Responsivo suave */
+@media (min-width: 640px){
+    form{
+        grid-template-columns: 1fr 1fr;
+    }
+    form > div:nth-child(1){ grid-column: 1 / -1; }
+    button[type="submit"]{ grid-column: 1 / -1; justify-self: end; }
+}

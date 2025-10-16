@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora IMC</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body>
+    <h1>Calculadora IMC</h1>
+    <form method="post" th:action="@{/calcular}" onsubmit="return validarAltura()">
+        <div>
+            <label>Nome</label>
+            <input type="text" name="nome">
+        </div>
+        <div>
+            <label>Altura (metros)</label>
+            <input type="text" id="altura" name="altura" placeholder="ex: 1,85">
+        </div>
+        <div>
+            <label>Peso (kgs)</label>
+            <input type="text" name="peso" placeholder="ex: 85,50">
+        </div>
+        <button type="submit">Calcular IMC</button>
+    </form>
+    <section>
+        <h2>IMC</h2>
+        <p></p>
+    </section>
+    <section>
+        <h2><p></p></h2>
+    </section>
+    <section>
+        <h2><p id="erro"></p></h2>
+    </section>
+</body>
+</html>
